@@ -3,21 +3,57 @@ const axios = require("axios");
 const app = express();
 const fs = require("fs");
 require("dotenv/config");
-const weathers = require("./functions/weather");
-const image = require("./functions/images");
-const directions = require("./functions/directions");
+
 const lists = require("./db/getList");
+const booking = require("./db/bookFlight");
 
 const { error } = require("console");
 
 app.use(express.json());
 
-app.get("/", async (req, res) => {
-  res.send(await lists.getList());
+app.get("/", async (req, res) => {});
 
-  // fs.readFile(__dirname + "/country.json", "utf8", (err, data) => {
-  //   res.send(data);
-  // });
+app.get("/availableFlight", async (req, res) => {
+  let from = req?.body?.from || "";
+  let to = req?.body?.to || "";
+  let connection = req?.body?.connecting_flight || "";
+
+  console.log(req.body?.params);
+  let response = await lists.getSpecificList(from, to, connection);
+  res.send(response);
+});
+
+app.get("/flightById", async (req, res) => {
+  let id = req.body?.id;
+  console.log(req.body?.params);
+  let response = await lists.getFlightById(id);
+  res.send(response);
+});
+
+app.get("/flightBook", async (req, resp) => {
+  let id = req.body?.id;
+  const data = await booking.getBookingById(id);
+
+  resp.send(data);
+});
+app.post("/flightBook", async (req, resp) => {
+  const data = req?.body?.payload;
+  await booking.onFlightBooking(data);
+  resp.send("success");
+});
+
+app.put("/flightBook", async (req, resp) => {
+  const data = req?.body?.payload;
+
+  await booking.onUpdateFlightBooking(data?.id, data?.persons_details);
+  resp.send("success");
+});
+
+app.delete("/flightBook", async (req, resp) => {
+  const id = req?.body?.id;
+
+  await booking.onCancelBooking(id);
+  resp.send("deleted");
 });
 
 app.get("/direction", async (req, res) => {
@@ -28,15 +64,6 @@ app.get("/direction", async (req, res) => {
   res.send(data);
   //   res.send(res.json(response?.data));
 });
-
-// // app.post("/postReq", (req, res) => {
-// //   if (!req.body.name) {
-// //     res.status(400).send("name required");
-// //     return;
-// //   }
-// //   console.log(req.body);
-// //   res.send("hi " + req.body.name);
-// // });
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
