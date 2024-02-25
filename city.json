@@ -1,0 +1,242 @@
+[
+  {
+    "origin_city": "London",
+    "destination_city": "Manchester",
+    "airline": "British Airways",
+    "available_seats": 150,
+    "number_of_connections": 0,
+    "price": 100
+  },
+  {
+    "origin_city": "Manchester",
+    "destination_city": "Glasgow",
+    "airline": "Ryanair",
+    "available_seats": 120,
+    "number_of_connections": 0,
+    "price": 80
+  },
+  {
+    "origin_city": "Glasgow",
+    "destination_city": "Belfast",
+    "airline": "EasyJet",
+    "available_seats": 100,
+    "number_of_connections": 0,
+    "price": 70
+  },
+  {
+    "origin_city": "Belfast",
+    "destination_city": "Cardiff",
+    "airline": "Flybe",
+    "available_seats": 110,
+    "number_of_connections": 0,
+    "price": 90
+  },
+  {
+    "origin_city": "Cardiff",
+    "destination_city": "Birmingham",
+    "airline": "Flybe",
+    "available_seats": 130,
+    "number_of_connections": 0,
+    "price": 85
+  },
+  {
+    "origin_city": "Birmingham",
+    "destination_city": "Edinburgh",
+    "airline": "British Airways",
+    "available_seats": 140,
+    "number_of_connections": 0,
+    "price": 95
+  },
+  {
+    "origin_city": "Edinburgh",
+    "destination_city": "London",
+    "airline": "EasyJet",
+    "available_seats": 150,
+    "number_of_connections": 0,
+    "price": 110
+  },
+  {
+    "origin_city": "London",
+    "destination_city": "Liverpool",
+    "airline": "Ryanair",
+    "available_seats": 120,
+    "number_of_connections": 0,
+    "price": 70
+  },
+  {
+    "origin_city": "Liverpool",
+    "destination_city": "Newcastle",
+    "airline": "EasyJet",
+    "available_seats": 110,
+    "number_of_connections": 0,
+    "price": 80
+  },
+  {
+    "origin_city": "Newcastle",
+    "destination_city": "Leeds",
+    "airline": "Flybe",
+    "available_seats": 100,
+    "number_of_connections": 0,
+    "price": 75
+  },
+  {
+    "origin_city": "Leeds",
+    "destination_city": "Sheffield",
+    "airline": "Flybe",
+    "available_seats": 110,
+    "number_of_connections": 0,
+    "price": 70
+  },
+  {
+    "origin_city": "Sheffield",
+    "destination_city": "Bristol",
+    "airline": "Ryanair",
+    "available_seats": 120,
+    "number_of_connections": 0,
+    "price": 85
+  },
+  {
+    "origin_city": "Bristol",
+    "destination_city": "Southampton",
+    "airline": "Flybe",
+    "available_seats": 130,
+    "number_of_connections": 0,
+    "price": 90
+  },
+  {
+    "origin_city": "Southampton",
+    "destination_city": "Brighton",
+    "airline": "Flybe",
+    "available_seats": 140,
+    "number_of_connections": 0,
+    "price": 95
+  },
+  {
+    "origin_city": "Brighton",
+    "destination_city": "Nottingham",
+    "airline": "Flybe",
+    "available_seats": 150,
+    "number_of_connections": 0,
+    "price": 100
+  },
+  {
+    "origin_city": "Nottingham",
+    "destination_city": "Oxford",
+    "airline": "Flybe",
+    "available_seats": 120,
+    "number_of_connections": 0,
+    "price": 70
+  },
+  {
+    "origin_city": "Oxford",
+    "destination_city": "Cambridge",
+    "airline": "Flybe",
+    "available_seats": 110,
+    "number_of_connections": 0,
+    "price": 80
+  },
+  {
+    "origin_city": "Cambridge",
+    "destination_city": "York",
+    "airline": "Flybe",
+    "available_seats": 130,
+    "number_of_connections": 0,
+    "price": 85
+  },
+  {
+    "origin_city": "York",
+    "destination_city": "Swansea",
+    "airline": "Flybe",
+    "available_seats": 140,
+    "number_of_connections": 0,
+    "price": 90
+  },
+  {
+    "origin_city": "Swansea",
+    "destination_city": "Dundee",
+    "airline": "Flybe",
+    "available_seats": 150,
+    "number_of_connections": 0,
+    "price": 100
+  },
+  {
+    "origin_city": "Dundee",
+    "destination_city": "Aberdeen",
+    "airline": "Flybe",
+    "available_seats": 120,
+    "number_of_connections": 0,
+    "price": 70
+  },
+  {
+    "origin_city": "Aberdeen",
+    "destination_city": "Plymouth",
+    "airline": "Flybe",
+    "available_seats": 110,
+    "number_of_connections": 0,
+    "price": 80
+  },
+  {
+    "origin_city": "Plymouth",
+    "destination_city": "Inverness",
+    "airline": "Flybe",
+    "available_seats": 130,
+    "number_of_connections": 0,
+    "price": 85
+  },
+  {
+    "origin_city": "Inverness",
+    "destination_city": "Stirling",
+    "airline": "Flybe",
+    "available_seats": 140,
+    "number_of_connections": 0,
+    "price": 90
+  },
+  {
+    "origin_city": "Stirling",
+    "destination_city": "Lancaster",
+    "airline": "Flybe",
+    "available_seats": 150,
+    "number_of_connections": 0,
+    "price": 100
+  },
+  {
+    "origin_city": "Lancaster",
+    "destination_city": "Canterbury",
+    "airline": "Flybe",
+    "available_seats": 120,
+    "number_of_connections": 0,
+    "price": 70
+  },
+  {
+    "origin_city": "Canterbury",
+    "destination_city": "Exeter",
+    "airline": "Flybe",
+    "available_seats": 110,
+    "number_of_connections": 0,
+    "price": 80
+  },
+  {
+    "origin_city": "Exeter",
+    "destination_city": "Carlisle",
+    "airline": "Flybe",
+    "available_seats": 130,
+    "number_of_connections": 0,
+    "price": 85
+  },
+  {
+    "origin_city": "Carlisle",
+    "destination_city": "Truro",
+    "airline": "Flybe",
+    "available_seats": 140,
+    "number_of_connections": 0,
+    "price": 90
+  },
+  {
+    "origin_city": "Truro",
+    "destination_city": "Londonderry",
+    "airline": "Flybe",
+    "available_seats": 150,
+    "number_of_connections": 0,
+    "price": 100
+  }
+]
