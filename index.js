@@ -6,6 +6,7 @@ require("dotenv/config");
 
 const lists = require("./db/getList");
 const booking = require("./db/bookFlight");
+const flight = require("./functions/flight");
 
 const { error } = require("console");
 
@@ -14,13 +15,26 @@ app.use(express.json());
 app.get("/", async (req, res) => {});
 
 app.get("/availableFlight", async (req, res) => {
-  let from = req?.body?.from || "";
-  let to = req?.body?.to || "";
-  let connection = req?.body?.connecting_flight || "";
+  try {
+    let from = req?.body?.from || "";
+    let to = req?.body?.to || "";
+    let connection = req?.body?.connecting_flight || "";
 
-  console.log(req.body?.params);
-  let response = await lists.getSpecificList(from, to, connection);
-  res.send(response);
+    let response = await lists.getSpecificList(from, to, connection);
+
+    for (var key in response) {
+      if (response.hasOwnProperty(key)) {
+        response[key] = {
+          ...response[key]._doc,
+          logo: await flight?.getFlightImage(response[key]?.airline),
+        };
+      }
+    }
+
+    res.send(response);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.get("/flightById", async (req, res) => {
