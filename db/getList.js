@@ -9,14 +9,18 @@ const listSchema = new mongoose.Schema({
   airline: String,
   available_seats: Number,
   number_of_connections: Number,
+  price: Number,
 });
 const ListModel = mongoose.model("available_flights", listSchema);
 
-const getSpecificList = async (origin, destination, connection) => {
+const getSpecificList = async (origin, destination, connection, seats) => {
   let resp;
   let payload = {};
   if (origin) {
     payload = { ...payload, ...{ origin_city: origin } };
+  }
+  if (seats) {
+    payload = { ...payload, ...{ available_seats: { $gte: seats } } };
   }
 
   if (destination) {
@@ -84,10 +88,20 @@ const reduceSeats = async (id, count) => {
   }
 };
 
+const addFlightData = async (data) => {
+  try {
+    let res = await ListModel.insertMany([data]);
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = {
   getList,
   getSpecificList,
   reduceSeats,
   addSeats,
   getFlightById,
+  addFlightData,
 };
