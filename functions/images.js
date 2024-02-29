@@ -13,15 +13,38 @@ const getUnsplashImage = async (name) => {
 };
 
 const getFlickrImage = async (name) => {
-  //   const response = await axios.get("https://www.flickr.com/services/rest", {
-  //     params: {
-  //       method: "flickr.photo.search",
-  //       api_key: process.env.FLICKR_KEY,
-  //       tags: "London",
-  //     },
-  //   });
-  //   let url = `https://live.staticflickr.com/{server-id}/{id}_{secret}_{size-suffix}.jpg`;
-  // return image_url;
+  try {
+    const response = await axios.get("https://www.flickr.com/services/rest", {
+      params: {
+        text: name + " location ",
+        // tags: name,
+        method: "flickr.photos.search",
+        api_key: process.env.FLICKR_KEY,
+        format: "json",
+        // privacy_filter: 1,
+        // accuracy: 1,
+        // content_types: 0,
+        // geo_context: 2,
+        // content_type: 1,
+        nojsoncallback: 1,
+      },
+    });
+    let data = response?.data?.photos?.photo;
+
+    let arr = [];
+    for (let i = 0; i < 5; i++) {
+      let file = data[i];
+      let url = `https://live.staticflickr.com/${file?.server}/${file?.id}_${file?.secret}.jpg`;
+      arr.push(url);
+    }
+
+    console.log(data);
+    // let url = `https://live.staticflickr.com/{server-id}/{id}_{secret}.jpg`;
+    // console.log(JSON.parse(response?.data));
+    return arr;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports = { getFlickrImage, getUnsplashImage };

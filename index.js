@@ -5,7 +5,7 @@ require("dotenv/config");
 
 const flightRoute = require("./routes/flights");
 const bookingRoute = require("./routes/booking");
-const directionRoute = require("./routes/direction");
+const placeRoute = require("./routes/place");
 
 const { error } = require("console");
 
@@ -17,7 +17,7 @@ app.use("/flight", flightRoute);
 
 app.use("/booking", bookingRoute);
 
-app.use("/direction", directionRoute);
+app.use("/place", placeRoute);
 
 const port = process.env.PORT || 3000;
 

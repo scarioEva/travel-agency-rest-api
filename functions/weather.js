@@ -1,15 +1,17 @@
 const axios = require("axios");
 
-const getWeather = async (lat, long) => {
+const getWeather = async (location) => {
   const response = await axios.get(
-    "https://api.tomorrow.io/v4/weather/forecast",
+    "http://api.openweathermap.org/data/2.5/weather",
     {
       params: {
-        location: lat + "," + long,
-        apikey: process.env.TOMORROW_WEATHER_KEY,
+        q: location,
+        units: "metric",
+        appid: process.env.OPEN_WEATHER_KEY,
       },
     }
   );
   return response?.data;
 };
+
 module.exports = { getWeather };
