@@ -35,14 +35,20 @@ const getSpecificList = async (origin, destination, connection, seats) => {
     }
   }
 
+  // let new_res = {};
   try {
-    resp = await ListModel.find(payload);
+    resp = await ListModel.find(payload).collation({
+      locale: "en",
+      strength: 2,
+    });
+    // new_res["data"] = resp;
   } catch (err) {
     console.log(err);
   }
   return resp;
 };
 
+//not called anywhere
 const getList = async () => {
   let resp;
   try {
@@ -56,9 +62,10 @@ const getList = async () => {
 const getFlightById = async (id) => {
   try {
     let res = await ListModel.find({ _id: id });
-    return res?.length > 0 ? res[0] : {};
+    return { data: res?.length > 0 ? res[0] : {}, status: 200 };
   } catch (err) {
     console.log(err);
+    return { status: 500 };
   }
 };
 
@@ -90,10 +97,11 @@ const reduceSeats = async (id, count) => {
 
 const addFlightData = async (data) => {
   try {
-    let res = await ListModel.insertMany([data]);
-    return res;
+    await ListModel.insertMany([data]);
+    return { data: "Flight added Successfully!", status: 201 };
   } catch (err) {
     console.log(err);
+    return { data: "", status: 500 };
   }
 };
 

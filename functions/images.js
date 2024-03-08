@@ -1,15 +1,22 @@
 const axios = require("axios");
 
 const getUnsplashImage = async (name) => {
-  const response = await axios.get("https://api.unsplash.com/search/photos/", {
-    params: {
-      client_id: process.env.UNSPLASH_KEY,
-      query: name,
-    },
-  });
-  let image_url = response?.data?.results[0]?.urls?.raw;
+  try {
+    const response = await axios.get(
+      "https://api.unsplash.com/search/photos/",
+      {
+        params: {
+          client_id: process.env.UNSPLASH_KEY,
+          query: name,
+        },
+      }
+    );
+    let image_url = response?.data?.results[0]?.urls?.raw;
 
-  return image_url;
+    return image_url;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const getFlickrImage = async (name) => {
