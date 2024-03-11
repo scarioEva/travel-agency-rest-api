@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const db = require("./connection");
 
 db.connect();
+const flight = require("../functions/flight");
 
 const listSchema = new mongoose.Schema({
   origin_city: String,
@@ -10,6 +11,10 @@ const listSchema = new mongoose.Schema({
   available_seats: Number,
   number_of_connections: Number,
   price: Number,
+  total_travel_time: String,
+  from_time: String,
+  to_time: String,
+  logo: String,
 });
 const ListModel = mongoose.model("available_flights", listSchema);
 
@@ -48,7 +53,7 @@ const getSpecificList = async (origin, destination, connection, seats) => {
   return resp;
 };
 
-//not called anywhere
+//note:not called anywhere
 const getList = async () => {
   let resp;
   try {
@@ -97,7 +102,12 @@ const reduceSeats = async (id, count) => {
 
 const addFlightData = async (data) => {
   try {
-    await ListModel.insertMany([data]);
+    console.log(data);
+    let payload = data;
+    payload["number_of_connections"] = data?.number_of_connections || 0;
+    payload["logo"] = await flight?.getFlightImage(data?.airline);
+
+    await ListModel.insertMany([payload]);
     return { data: "Flight added Successfully!", status: 201 };
   } catch (err) {
     console.log(err);

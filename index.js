@@ -14,7 +14,9 @@ const { error } = require("console");
 app.use(cors());
 app.use(express.json());
 
-app.get("/", async (req, res) => {});
+app.get("/", async (req, res) => {
+  res?.send("N1202438_Akhil_Ashokan");
+});
 
 app.use("/flight", flightRoute);
 

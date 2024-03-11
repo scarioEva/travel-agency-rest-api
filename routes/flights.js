@@ -14,19 +14,9 @@ router.post("/search", async (req, res) => {
 
     let response = await lists.getSpecificList(from, to, connection, seats);
 
-    for (var key in response) {
-      console.log(key);
-      if (response.hasOwnProperty(key)) {
-        response[key] = {
-          ...response[key]._doc,
-          logo: await flight?.getFlightImage(response[key]?.airline),
-        };
-      }
-    }
-
-    res.send(common?.sendData(200, response));
+    res?.status(200).send(common?.sendData(200, response));
   } catch (err) {
-    res?.send(500);
+    res?.status(500)?.send(500);
     console.log(err);
   }
 });
@@ -37,47 +27,51 @@ router.get("/searchById", async (req, res) => {
     if (id && id != "") {
       let response = await lists.getFlightById(id);
       let data = [response?.data];
-      for (var key in data) {
-        console.log(data[key]?.airline);
-        if (data.hasOwnProperty(key)) {
-          data[key] = {
-            ...data[key]._doc,
-            logo: await flight?.getFlightImage(data[key]?.airline),
-          };
-        }
-      }
-      res?.send(
-        common?.sendData(
-          response?.status,
-          data?.length > 0 ? data[0] : {} || {}
-        )
-      );
+
+      res
+        ?.status(response?.status)
+        ?.send(
+          common?.sendData(
+            response?.status,
+            data?.length > 0 ? data[0] : {} || {}
+          )
+        );
+    } else {
+      res?.status(400).send(common?.sendData(400, "id is required"));
     }
   } catch (err) {
-    res?.send(common?.sendData(500));
+    res?.status(500)?.send(common?.sendData(500));
     console.log(err);
   }
 });
 
 router.post("/add", async (req, res) => {
   try {
-    let data = req.body;
+    let data = req.body?.data;
+
+    // console.log(data);
     if (
-      data &&
       data?.origin_city &&
       data?.destination_city &&
       data?.airline &&
       data?.available_seats &&
-      data?.number_of_connections &&
-      data?.price
+      data?.price &&
+      data?.total_travel_time &&
+      data?.from_time &&
+      data?.to_time
     ) {
       let response = await lists.addFlightData(data);
-      res.send(common?.sendData(response?.status, response?.data || ""));
+      // console.log(response);
+      res
+        ?.status(response?.status)
+        ?.send(common?.sendData(response?.status, response?.data || ""));
     } else {
-      res?.send(common?.sendData(400));
+      res
+        ?.status(400)
+        ?.send(common?.sendData(400, "Enter all the required fields"));
     }
   } catch (err) {
-    res?.send(common?.sendData(500));
+    res?.status(500)?.send(common?.sendData(500));
     console.log(err);
   }
 });
