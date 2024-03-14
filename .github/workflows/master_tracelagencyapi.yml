@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://nodexpress.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_bad5b8c12fb54c2fa78c5c16ff733ef6 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_365a6145bb254dd9ba1abe8664dcf48c }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_be92487d410b4dceb6e954d9800d7150 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_e303d9be9a6c47dc826b909bd662f8c8 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: nodexpress.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_bad5b8c12fb54c2fa78c5c16ff733ef6 }}/travel_api_git:${{ github.sha }}
+        tags: nodexpress.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_be92487d410b4dceb6e954d9800d7150 }}/nodexpress/travel_api_git:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'tracelagencyapi'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_7cb086970a7d4378996469c21b1076f3 }}
-        images: 'nodexpress.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_bad5b8c12fb54c2fa78c5c16ff733ef6 }}/travel_api_git:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_bae0c87e56734693be4d645fe9e1f472 }}
+        images: 'nodexpress.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_be92487d410b4dceb6e954d9800d7150 }}/nodexpress/travel_api_git:${{ github.sha }}'
