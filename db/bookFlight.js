@@ -150,10 +150,15 @@ const onUpdateFlightBooking = async (id, data) => {
       result?.data?.passenger_details &&
       result?.data?.passenger_details?.length;
     let incoming_count = data?.length;
+    console.log("incoming", incoming_count);
+    console.log("result", result_count);
+    console.log("avaial", flight_data?.data?.available_seats);
+
+    // if(result_count>incoming_count && incoming_count)
 
     if (
       incoming_count > result_count &&
-      incoming_count > flight_data?.data?.available_seats
+      incoming_count - result_count > flight_data?.data?.available_seats
     ) {
       new_res[
         "data"
