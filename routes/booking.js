@@ -65,7 +65,6 @@ router.post("/add", async (req, resp) => {
 router.put("/update", async (req, resp) => {
   try {
     const data = req?.body?.payload;
-    console.log("sada", data);
     if (passengerCheck(data?.passenger_details)) {
       const response = await booking.onUpdateFlightBooking(
         data?.id,
@@ -73,14 +72,14 @@ router.put("/update", async (req, resp) => {
       );
       resp
         ?.status(response?.status)
-        .send(common?.sendData(response?.status, data?.data || ""));
+        .send(common?.sendData(response?.status, response?.data || ""));
     } else {
       resp
         ?.status(400)
         ?.send(common?.sendData(400, "Enter all the passenger fields"));
     }
   } catch (err) {
-    console.log(err);
+    console.log("err", err);
     resp?.status(500)?.send(common?.sendData(500));
   }
 });

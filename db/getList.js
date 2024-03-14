@@ -39,6 +39,7 @@ const getSpecificList = async (origin, destination, connection, seats) => {
       payload = { ...payload, ...{ number_of_connections: 0 } };
     }
   }
+  payload = { ...payload, ...{ available_seats: { $gt: 0 } } };
 
   // let new_res = {};
   try {

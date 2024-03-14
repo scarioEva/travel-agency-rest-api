@@ -142,7 +142,6 @@ const onCancelBooking = async (id) => {
 const onUpdateFlightBooking = async (id, data) => {
   let new_res = {};
   try {
-    console.log(id, data);
     const result = await getBookingById(id);
 
     const flight_data = await flight.getFlightById(result?.data?.flightId);
@@ -172,7 +171,6 @@ const onUpdateFlightBooking = async (id, data) => {
       }
 
       let total_price = result?.data?.actual_price * data?.length;
-      console.log(id);
       await BookModel.updateOne(
         { _id: id },
         { passenger_details: data, total_price: total_price }
