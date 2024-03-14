@@ -4,6 +4,6 @@ COPY . .
 
 RUN npm ci
 
-ENV CUR_CONV_URL="http://cur-conv:8080/CurConvRS/webresources"
+ENV CUR_CONV_URL="https://curconvapi.azurewebsites.net/CurConvRS/webresources"
 
 CMD ["npm", "start"]
