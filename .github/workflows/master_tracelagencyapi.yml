@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy container app to Azure Web App - backendapiapp
+name: Build and deploy container app to Azure Web App - tracelagencyapi
 
 on:
   push:
@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://nodexpress.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_b79dfd4712454aa4a9cbe25fa4366eb6 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_261ea0508d0f479b894412eaeb395cdb }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_9221636d5e95413cbc07f6f416442d21 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_f9d4eb31b8524caca0784706b3d32b8f }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: nodexpress.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_b79dfd4712454aa4a9cbe25fa4366eb6 }}/travel_api_git:${{ github.sha }}
+        tags: nodexpress.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_9221636d5e95413cbc07f6f416442d21 }}/travel_api_git:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -45,7 +45,7 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'backendapiapp'
+        app-name: 'tracelagencyapi'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a80a92ee3f534a1b92ee4f472e17dae5 }}
-        images: 'nodexpress.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_b79dfd4712454aa4a9cbe25fa4366eb6 }}/travel_api_git:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_fa91cf1879254f55b71ad543982ce19a }}
+        images: 'nodexpress.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_9221636d5e95413cbc07f6f416442d21 }}/travel_api_git:${{ github.sha }}'
